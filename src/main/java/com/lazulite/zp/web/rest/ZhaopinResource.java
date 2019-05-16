@@ -7,6 +7,7 @@ import com.lazulite.zp.web.rest.errors.BadRequestAlertException;
 import io.github.jhipster.web.util.HeaderUtil;
 import io.github.jhipster.web.util.PaginationUtil;
 import io.github.jhipster.web.util.ResponseUtil;
+import org.apache.commons.lang3.StringUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Value;
@@ -94,10 +95,16 @@ public class ZhaopinResource {
     @GetMapping("/zhaopins")
     public ResponseEntity<List<Zhaopin>> getAllZhaopins(Pageable pageable, @RequestParam MultiValueMap<String, String> queryParams, UriComponentsBuilder uriBuilder) {
         log.debug("REST request to get a page of Zhaopins");
+        String cluster =queryParams.getFirst("cluster");
+        if(StringUtils.isNotBlank(cluster)){
+            List<Zhaopin> allByCluster = zhaopinService.findAllByCluster(Long.valueOf(cluster));
+            return ResponseEntity.ok().body(allByCluster);
+        }
         Page<Zhaopin> page = zhaopinService.findAll(pageable);
         HttpHeaders headers = PaginationUtil.generatePaginationHttpHeaders(uriBuilder.queryParams(queryParams), page);
         return ResponseEntity.ok().headers(headers).body(page.getContent());
     }
+
 
     /**
      * {@code GET  /zhaopins/:id} : get the "id" zhaopin.

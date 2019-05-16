@@ -39,6 +39,48 @@
                 </dd>
             </dl>
 
+            <div class="table-responsive" *ngIf="zhaopins">
+                <table class="table table-striped">
+                    <thead>
+                    <tr >
+                        <th ><span jhiTranslate="global.field.id">ID</span> <fa-icon [icon]="'sort'"></fa-icon></th>
+                        <th ><span jhiTranslate="zpApp.zhaopin.zwmc">Zwmc</span> <fa-icon [icon]="'sort'"></fa-icon></th>
+                        <th ><span jhiTranslate="zpApp.zhaopin.gsmc">Gsmc</span> <fa-icon [icon]="'sort'"></fa-icon></th>
+                        <th ><span jhiTranslate="zpApp.zhaopin.gzdd">Gzdd</span> <fa-icon [icon]="'sort'"></fa-icon></th>
+                        <th ><span jhiTranslate="zpApp.zhaopin.xzLow">Xz Low</span> <fa-icon [icon]="'sort'"></fa-icon></th>
+                        <th ><span jhiTranslate="zpApp.zhaopin.xzHeight">Xz Height</span> <fa-icon [icon]="'sort'"></fa-icon></th>
+                        <th ><span jhiTranslate="zpApp.zhaopin.ptime">Ptime</span> <fa-icon [icon]="'sort'"></fa-icon></th>
+                        <th ><span jhiTranslate="zpApp.zhaopin.href">Href</span> <fa-icon [icon]="'sort'"></fa-icon></th>
+                        <th ><span jhiTranslate="zpApp.zhaopin.cluster">Cluster</span> <fa-icon [icon]="'sort'"></fa-icon></th>
+                        <th></th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr *ngFor="let item of zhaopins ;trackBy: trackId">
+                        <td><a [routerLink]="['/zhaopin', item.id, 'view' ]">{{item.id}}</a></td>
+                        <td>{{item.zwmc}}</td>
+                        <td>{{item.gsmc}}</td>
+                        <td>{{item.gzdd}}</td>
+                        <td>{{item.xzLow}}</td>
+                        <td>{{item.xzHeight}}</td>
+                        <td>{{item.ptime | date:'medium'}}</td>
+                        <td>{{item.href}}</td>
+                        <td>{{item.cluster}}</td>
+                        <td class="text-right">
+                            <div class="btn-group">
+                                <button type="submit"
+                                        [routerLink]="['/zhaopin', item.id, 'view' ]"
+                                        class="btn btn-info btn-sm">
+                                    <fa-icon [icon]="'eye'"></fa-icon>
+                                    <span class="d-none d-md-inline" jhiTranslate="entity.action.view">View</span>
+                                </button>
+                            </div>
+                        </td>
+                    </tr>
+                    </tbody>
+                </table>
+            </div>
+
             <button type="submit"
                     (click)="previousState()"
                     class="btn btn-info">

@@ -43,6 +43,7 @@ import {
   ],
   providers: [{ provide: JhiLanguageService, useClass: JhiLanguageService }],
   entryComponents: [UserMgmtDeleteDialogComponent, JhiHealthModalComponent],
+  exports: [JhiHealthCheckComponent],
   schemas: [CUSTOM_ELEMENTS_SCHEMA]
 })
 export class ZpAdminModule {
