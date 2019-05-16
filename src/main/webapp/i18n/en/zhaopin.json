@@ -1,0 +1,28 @@
+{
+  "zpApp": {
+    "zhaopin": {
+      "home": {
+        "title": "Zhaopins",
+        "createLabel": "Create a new Zhaopin",
+        "createOrEditLabel": "Create or edit a Zhaopin"
+      },
+      "created": "A new Zhaopin is created with identifier {{ param }}",
+      "updated": "A Zhaopin is updated with identifier {{ param }}",
+      "deleted": "A Zhaopin is deleted with identifier {{ param }}",
+      "delete": {
+        "question": "Are you sure you want to delete Zhaopin {{ id }}?"
+      },
+      "detail": {
+        "title": "Zhaopin"
+      },
+      "zwmc": "Zwmc",
+      "gsmc": "Gsmc",
+      "gzdd": "Gzdd",
+      "xzLow": "Xz Low",
+      "xzHeight": "Xz Height",
+      "ptime": "Ptime",
+      "href": "Href",
+      "cluster": "Cluster"
+    }
+  }
+}

@@ -1,0 +1,55 @@
+<div class="row justify-content-center">
+    <div class="col-8">
+        <div *ngIf="zhaopin">
+            <h2><span jhiTranslate="zpApp.zhaopin.detail.title">Zhaopin</span> {{zhaopin.id}}</h2>
+            <hr>
+            <jhi-alert-error></jhi-alert-error>
+            <dl class="row-md jh-entity-details">
+                <dt><span jhiTranslate="zpApp.zhaopin.zwmc">Zwmc</span></dt>
+                <dd>
+                    <span>{{zhaopin.zwmc}}</span>
+                </dd>
+                <dt><span jhiTranslate="zpApp.zhaopin.gsmc">Gsmc</span></dt>
+                <dd>
+                    <span>{{zhaopin.gsmc}}</span>
+                </dd>
+                <dt><span jhiTranslate="zpApp.zhaopin.gzdd">Gzdd</span></dt>
+                <dd>
+                    <span>{{zhaopin.gzdd}}</span>
+                </dd>
+                <dt><span jhiTranslate="zpApp.zhaopin.xzLow">Xz Low</span></dt>
+                <dd>
+                    <span>{{zhaopin.xzLow}}</span>
+                </dd>
+                <dt><span jhiTranslate="zpApp.zhaopin.xzHeight">Xz Height</span></dt>
+                <dd>
+                    <span>{{zhaopin.xzHeight}}</span>
+                </dd>
+                <dt><span jhiTranslate="zpApp.zhaopin.ptime">Ptime</span></dt>
+                <dd>
+                    <span>{{zhaopin.ptime}}</span>
+                </dd>
+                <dt><span jhiTranslate="zpApp.zhaopin.href">Href</span></dt>
+                <dd>
+                    <span>{{zhaopin.href}}</span>
+                </dd>
+                <dt><span jhiTranslate="zpApp.zhaopin.cluster">Cluster</span></dt>
+                <dd>
+                    <span>{{zhaopin.cluster}}</span>
+                </dd>
+            </dl>
+
+            <button type="submit"
+                    (click)="previousState()"
+                    class="btn btn-info">
+                <fa-icon [icon]="'arrow-left'"></fa-icon>&nbsp;<span jhiTranslate="entity.action.back"> Back</span>
+            </button>
+
+            <button type="button"
+                    [routerLink]="['/zhaopin', zhaopin.id, 'edit']"
+                    class="btn btn-primary">
+                <fa-icon [icon]="'pencil-alt'"></fa-icon>&nbsp;<span jhiTranslate="entity.action.edit"> Edit</span>
+            </button>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,65 @@
+<div class="row justify-content-center">
+    <div class="col-8">
+        <form name="editForm" role="form" novalidate (ngSubmit)="save()" [formGroup]="editForm">
+            <h2 id="jhi-zhaopin-heading" jhiTranslate="zpApp.zhaopin.home.createOrEditLabel">Create or edit a Zhaopin</h2>
+            <div>
+                <jhi-alert-error></jhi-alert-error>
+                <div class="form-group" [hidden]="!zhaopin.id">
+                    <label for="id" jhiTranslate="global.field.id">ID</label>
+                    <input type="text" class="form-control" id="id" name="id" formControlName="id"
+                        readonly />
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="zpApp.zhaopin.zwmc" for="field_zwmc">Zwmc</label>
+                    <input type="text" class="form-control" name="zwmc" id="field_zwmc"
+                           formControlName="zwmc"/>
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="zpApp.zhaopin.gsmc" for="field_gsmc">Gsmc</label>
+                    <input type="text" class="form-control" name="gsmc" id="field_gsmc"
+                           formControlName="gsmc"/>
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="zpApp.zhaopin.gzdd" for="field_gzdd">Gzdd</label>
+                    <input type="text" class="form-control" name="gzdd" id="field_gzdd"
+                           formControlName="gzdd"/>
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="zpApp.zhaopin.xzLow" for="field_xzLow">Xz Low</label>
+                    <input type="number" class="form-control" name="xzLow" id="field_xzLow"
+                           formControlName="xzLow"/>
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="zpApp.zhaopin.xzHeight" for="field_xzHeight">Xz Height</label>
+                    <input type="number" class="form-control" name="xzHeight" id="field_xzHeight"
+                           formControlName="xzHeight"/>
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="zpApp.zhaopin.ptime" for="field_ptime">Ptime</label>
+                    <div class="d-flex">
+                        <input id="field_ptime" type="datetime-local" class="form-control" name="ptime" formControlName="ptime" placeholder="YYYY-MM-DD HH:mm"/>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="zpApp.zhaopin.href" for="field_href">Href</label>
+                    <input type="text" class="form-control" name="href" id="field_href"
+                           formControlName="href"/>
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="zpApp.zhaopin.cluster" for="field_cluster">Cluster</label>
+                    <input type="number" class="form-control" name="cluster" id="field_cluster"
+                           formControlName="cluster"/>
+                </div>
+
+            </div>
+            <div>
+                <button type="button" id="cancel-save" class="btn btn-secondary"  (click)="previousState()">
+                    <fa-icon [icon]="'ban'"></fa-icon>&nbsp;<span jhiTranslate="entity.action.cancel">Cancel</span>
+                </button>
+                <button type="submit" id="save-entity" [disabled]="editForm.invalid || isSaving" class="btn btn-primary">
+                    <fa-icon [icon]="'save'"></fa-icon>&nbsp;<span jhiTranslate="entity.action.save">Save</span>
+                </button>
+            </div>
+        </form>
+    </div>
+</div>

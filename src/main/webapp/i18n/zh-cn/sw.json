@@ -1,0 +1,21 @@
+{
+  "zpApp": {
+    "sw": {
+      "home": {
+        "title": "Sws",
+        "createLabel": "创建新 Sw",
+        "createOrEditLabel": "创建或编辑 Sw"
+      },
+      "created": "Sw {{ param }} 创建成功",
+      "updated": "Sw {{ param }} 更新成功",
+      "deleted": "Sw {{ param }} 删除成功",
+      "delete": {
+        "question": "你确定要删除 Sw {{ id }} 吗？"
+      },
+      "detail": {
+        "title": "Sw"
+      },
+      "text": "Text"
+    }
+  }
+}
