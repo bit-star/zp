@@ -1,0 +1,21 @@
+{
+  "zpApp": {
+    "sw": {
+      "home": {
+        "title": "Sws",
+        "createLabel": "Create a new Sw",
+        "createOrEditLabel": "Create or edit a Sw"
+      },
+      "created": "A new Sw is created with identifier {{ param }}",
+      "updated": "A Sw is updated with identifier {{ param }}",
+      "deleted": "A Sw is deleted with identifier {{ param }}",
+      "delete": {
+        "question": "Are you sure you want to delete Sw {{ id }}?"
+      },
+      "detail": {
+        "title": "Sw"
+      },
+      "text": "Text"
+    }
+  }
+}

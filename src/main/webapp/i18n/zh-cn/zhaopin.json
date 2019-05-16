@@ -1,0 +1,28 @@
+{
+  "zpApp": {
+    "zhaopin": {
+      "home": {
+        "title": "Zhaopins",
+        "createLabel": "创建新 Zhaopin",
+        "createOrEditLabel": "创建或编辑 Zhaopin"
+      },
+      "created": "Zhaopin {{ param }} 创建成功",
+      "updated": "Zhaopin {{ param }} 更新成功",
+      "deleted": "Zhaopin {{ param }} 删除成功",
+      "delete": {
+        "question": "你确定要删除 Zhaopin {{ id }} 吗？"
+      },
+      "detail": {
+        "title": "Zhaopin"
+      },
+      "zwmc": "Zwmc",
+      "gsmc": "Gsmc",
+      "gzdd": "Gzdd",
+      "xzLow": "Xz Low",
+      "xzHeight": "Xz Height",
+      "ptime": "Ptime",
+      "href": "Href",
+      "cluster": "Cluster"
+    }
+  }
+}

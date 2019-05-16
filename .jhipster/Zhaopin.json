@@ -1,0 +1,47 @@
+{
+    "name": "Zhaopin",
+    "fields": [
+        {
+            "fieldName": "zwmc",
+            "fieldType": "String"
+        },
+        {
+            "fieldName": "gsmc",
+            "fieldType": "String"
+        },
+        {
+            "fieldName": "gzdd",
+            "fieldType": "String"
+        },
+        {
+            "fieldName": "xzLow",
+            "fieldType": "Long"
+        },
+        {
+            "fieldName": "xzHeight",
+            "fieldType": "Long"
+        },
+        {
+            "fieldName": "ptime",
+            "fieldType": "Instant"
+        },
+        {
+            "fieldName": "href",
+            "fieldType": "String"
+        },
+        {
+            "fieldName": "cluster",
+            "fieldType": "Long"
+        }
+    ],
+    "relationships": [],
+    "changelogDate": "20190516122432",
+    "entityTableName": "zhaopin",
+    "dto": "no",
+    "pagination": "pagination",
+    "service": "serviceClass",
+    "jpaMetamodelFiltering": false,
+    "fluentMethods": true,
+    "clientRootFolder": "",
+    "applications": "*"
+}
