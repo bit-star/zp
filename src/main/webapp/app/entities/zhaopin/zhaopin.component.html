@@ -21,7 +21,7 @@
             <th jhiSortBy="xzLow"><span jhiTranslate="zpApp.zhaopin.xzLow">Xz Low</span> <fa-icon [icon]="'sort'"></fa-icon></th>
             <th jhiSortBy="xzHeight"><span jhiTranslate="zpApp.zhaopin.xzHeight">Xz Height</span> <fa-icon [icon]="'sort'"></fa-icon></th>
             <th jhiSortBy="ptime"><span jhiTranslate="zpApp.zhaopin.ptime">Ptime</span> <fa-icon [icon]="'sort'"></fa-icon></th>
-            <th jhiSortBy="href"><span jhiTranslate="zpApp.zhaopin.href">Href</span> <fa-icon [icon]="'sort'"></fa-icon></th>
+<!--            <th jhiSortBy="href"><span jhiTranslate="zpApp.zhaopin.href">Href</span> <fa-icon [icon]="'sort'"></fa-icon></th>-->
             <th jhiSortBy="cluster"><span jhiTranslate="zpApp.zhaopin.cluster">Cluster</span> <fa-icon [icon]="'sort'"></fa-icon></th>
             <th></th>
             </tr>
@@ -29,13 +29,13 @@
             <tbody>
             <tr *ngFor="let zhaopin of zhaopins ;trackBy: trackId">
                 <td><a [routerLink]="['/zhaopin', zhaopin.id, 'view' ]">{{zhaopin.id}}</a></td>
-                <td>{{zhaopin.zwmc}}</td>
+                <td><a href="{{zhaopin.href}}">{{zhaopin.zwmc}}</a></td>
                 <td>{{zhaopin.gsmc}}</td>
                 <td>{{zhaopin.gzdd}}</td>
                 <td>{{zhaopin.xzLow}}</td>
                 <td>{{zhaopin.xzHeight}}</td>
                 <td>{{zhaopin.ptime | date:'medium'}}</td>
-                <td>{{zhaopin.href}}</td>
+<!--                <td>{{zhaopin.href}}</td>-->
                 <td>{{zhaopin.cluster}}</td>
                 <td class="text-right">
                     <div class="btn-group">

@@ -97,6 +97,8 @@ spring:
         size: 2
   thymeleaf:
     mode: HTML
+  liquibase:
+    enabled: true
 
 server:
   servlet:
