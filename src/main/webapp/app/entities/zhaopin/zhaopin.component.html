@@ -1,13 +1,15 @@
 <div>
     <h2 id="page-heading">
-        <span jhiTranslate="zpApp.zhaopin.home.title">Zhaopins</span>
+        <span >职位列表</span>
         <button id="jh-create-entity" class="btn btn-primary float-right jh-create-entity create-zhaopin" [routerLink]="['/zhaopin/new']">
             <fa-icon [icon]="'plus'"></fa-icon>
             <span  jhiTranslate="zpApp.zhaopin.home.createLabel">
             Create new Zhaopin
             </span>
         </button>
-        <button  class="btn btn-primary float-right jh-create-entity" (click)="refresh()" >
+
+        <button  class="btn btn-primary float-right jh-create-entity"  style="margin-left: 50px;margin-right: 50px" (click)="refresh()" >
+            <fa-icon [icon]="'sync'"></fa-icon>
             重新爬取数据并执行聚类算法
         </button>
     </h2>
