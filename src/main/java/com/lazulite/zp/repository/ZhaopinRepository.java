@@ -12,7 +12,7 @@ import java.util.List;
  */
 @SuppressWarnings("unused")
 @Repository
-public interface ZhaopinRepository extends JpaRepository<Zhaopin, Long> {
+public interface ZhaopinRepository extends JpaRepository<Zhaopin, Long> , JpaSpecificationExecutor<Zhaopin> {
     List<Zhaopin> findAllByCluster(Long cluster);
 
 }

@@ -1,8 +1,14 @@
 package com.lazulite.zp;
 
+import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.databind.ObjectMapper;
 import com.lazulite.zp.config.DefaultProfileUtil;
+import org.apdplat.word.WordSegmenter;
+import org.apdplat.word.segmentation.Word;
 import org.springframework.boot.builder.SpringApplicationBuilder;
 import org.springframework.boot.web.servlet.support.SpringBootServletInitializer;
+
+import java.util.List;
 
 /**
  * This is a helper Java class that provides an alternative to creating a {@code web.xml}.
@@ -18,4 +24,7 @@ public class ApplicationWebXml extends SpringBootServletInitializer {
         DefaultProfileUtil.addDefaultProfile(application.application());
         return application.sources(ZpApp.class);
     }
+
+
+
 }

@@ -38,6 +38,10 @@ export class ZhaopinService {
       .pipe(map((res: EntityResponseType) => this.convertDateFromServer(res)));
   }
 
+  refresh(): Observable<EntityResponseType> {
+    return this.http.get<any>(`${this.resourceUrl}/refresh`, { observe: 'response' }).pipe(map((res: EntityResponseType) => res));
+  }
+
   query(req?: any): Observable<EntityArrayResponseType> {
     const options = createRequestOption(req);
     return this.http
