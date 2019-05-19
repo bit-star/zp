@@ -7,7 +7,9 @@
             <dl class="row-md jh-entity-details">
                 <dt><span jhiTranslate="zpApp.zhaopin.zwmc">Zwmc</span></dt>
                 <dd>
-                    <span>{{zhaopin.zwmc}}</span>
+                    <span>
+                        <a href="{{zhaopin.href}}">{{zhaopin.zwmc}}</a>
+                    </span>
                 </dd>
                 <dt><span jhiTranslate="zpApp.zhaopin.gsmc">Gsmc</span></dt>
                 <dd>
@@ -50,7 +52,7 @@
                         <th ><span jhiTranslate="zpApp.zhaopin.xzLow">Xz Low</span> <fa-icon [icon]="'sort'"></fa-icon></th>
                         <th ><span jhiTranslate="zpApp.zhaopin.xzHeight">Xz Height</span> <fa-icon [icon]="'sort'"></fa-icon></th>
                         <th ><span jhiTranslate="zpApp.zhaopin.ptime">Ptime</span> <fa-icon [icon]="'sort'"></fa-icon></th>
-                        <th ><span jhiTranslate="zpApp.zhaopin.href">Href</span> <fa-icon [icon]="'sort'"></fa-icon></th>
+<!--                        <th ><span jhiTranslate="zpApp.zhaopin.href">Href</span> <fa-icon [icon]="'sort'"></fa-icon></th>-->
                         <th ><span jhiTranslate="zpApp.zhaopin.cluster">Cluster</span> <fa-icon [icon]="'sort'"></fa-icon></th>
                         <th></th>
                     </tr>
@@ -58,13 +60,13 @@
                     <tbody>
                     <tr *ngFor="let item of zhaopins ;trackBy: trackId">
                         <td><a [routerLink]="['/zhaopin', item.id, 'view' ]">{{item.id}}</a></td>
-                        <td>{{item.zwmc}}</td>
+                        <td><a href="{{item.href}}">{{item.zwmc}}</a></td>
                         <td>{{item.gsmc}}</td>
                         <td>{{item.gzdd}}</td>
                         <td>{{item.xzLow}}</td>
                         <td>{{item.xzHeight}}</td>
                         <td>{{item.ptime | date:'medium'}}</td>
-                        <td>{{item.href}}</td>
+<!--                        <td>{{item.href}}</td>-->
                         <td>{{item.cluster}}</td>
                         <td class="text-right">
                             <div class="btn-group">
