@@ -1,11 +1,15 @@
 package com.lazulite.zp;
 
+import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.databind.ObjectMapper;
 import com.lazulite.zp.config.ApplicationProperties;
 import com.lazulite.zp.config.DefaultProfileUtil;
 
 import io.github.jhipster.config.JHipsterConstants;
 
 import org.apache.commons.lang3.StringUtils;
+import org.apdplat.word.WordSegmenter;
+import org.apdplat.word.segmentation.Word;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.InitializingBean;
@@ -19,6 +23,7 @@ import java.net.InetAddress;
 import java.net.UnknownHostException;
 import java.util.Arrays;
 import java.util.Collection;
+import java.util.List;
 
 @SpringBootApplication
 @EnableConfigurationProperties({LiquibaseProperties.class, ApplicationProperties.class})
@@ -76,9 +81,21 @@ public class ZpApp implements InitializingBean {
         }
         String hostAddress = "localhost";
         try {
+            String title ="我叫李太白，我是一个诗人，我生活在唐朝";
             hostAddress = InetAddress.getLocalHost().getHostAddress();
+            ObjectMapper objectMapper =new ObjectMapper();
+            //移除停用词进行分词
+            List<Word> list = WordSegmenter.seg(title);
+
+            System.out.println(objectMapper.writeValueAsString(list));
+
+            //保留停用词
+            List<Word> lists = WordSegmenter.segWithStopWords(title);
+            System.out.println(objectMapper.writeValueAsString(lists));
         } catch (UnknownHostException e) {
             log.warn("The host name could not be determined, using `localhost` as fallback");
+        } catch (JsonProcessingException e) {
+            e.printStackTrace();
         }
         log.info("\n----------------------------------------------------------\n\t" +
                 "Application '{}' is running! Access URLs:\n\t" +
@@ -94,5 +111,6 @@ public class ZpApp implements InitializingBean {
             serverPort,
             contextPath,
             env.getActiveProfiles());
+
     }
 }

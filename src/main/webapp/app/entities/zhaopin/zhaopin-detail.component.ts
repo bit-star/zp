@@ -43,7 +43,6 @@ export class ZhaopinDetailComponent implements OnInit {
         (res: HttpErrorResponse) => this.onError(res.message)
       );
   }
-  n;
 
   protected handleZhaopins(data: IZhaopin[], headers: HttpHeaders) {
     let iZhaopins = data.filter(item => item.id != this.zhaopin.id);

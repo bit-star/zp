@@ -8,6 +8,7 @@ import io.github.jhipster.web.util.HeaderUtil;
 import io.github.jhipster.web.util.PaginationUtil;
 import io.github.jhipster.web.util.ResponseUtil;
 import org.apache.commons.lang3.StringUtils;
+import org.apdplat.word.WordSegmenter;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Value;
@@ -25,6 +26,7 @@ import java.net.URISyntaxException;
 
 import java.util.List;
 import java.util.Optional;
+import java.util.stream.Collectors;
 
 /**
  * REST controller for managing {@link com.lazulite.zp.domain.Zhaopin}.
@@ -96,9 +98,15 @@ public class ZhaopinResource {
     public ResponseEntity<List<Zhaopin>> getAllZhaopins(Pageable pageable, @RequestParam MultiValueMap<String, String> queryParams, UriComponentsBuilder uriBuilder) {
         log.debug("REST request to get a page of Zhaopins");
         String cluster =queryParams.getFirst("cluster");
+        String words =queryParams.getFirst("words");
         if(StringUtils.isNotBlank(cluster)){
             List<Zhaopin> allByCluster = zhaopinService.findAllByCluster(Long.valueOf(cluster));
             return ResponseEntity.ok().body(allByCluster);
+        }else if(StringUtils.isNotBlank(words)&&!words.equals("undefined")){
+            List<String> wordList = WordSegmenter.segWithStopWords(words).stream().map(word -> word.getText()).collect(Collectors.toList());
+            Page<Zhaopin> page = zhaopinService.findByWords(wordList,pageable);
+            HttpHeaders headers = PaginationUtil.generatePaginationHttpHeaders(uriBuilder.queryParams(queryParams), page);
+            return ResponseEntity.ok().headers(headers).body(page.getContent());
         }
         Page<Zhaopin> page = zhaopinService.findAll(pageable);
         HttpHeaders headers = PaginationUtil.generatePaginationHttpHeaders(uriBuilder.queryParams(queryParams), page);
@@ -131,4 +139,13 @@ public class ZhaopinResource {
         zhaopinService.delete(id);
         return ResponseEntity.noContent().headers(HeaderUtil.createEntityDeletionAlert(applicationName, true, ENTITY_NAME, id.toString())).build();
     }
+
+    @GetMapping("/zhaopins/refresh")
+    public ResponseEntity refresh() {
+        log.debug("REST request to refresh");
+        String result = zhaopinService.execPython();
+        return ResponseEntity.ok(result);
+    }
+
+
 }

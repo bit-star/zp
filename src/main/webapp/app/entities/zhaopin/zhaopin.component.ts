@@ -5,7 +5,7 @@ import { Subscription } from 'rxjs';
 import { filter, map } from 'rxjs/operators';
 import { JhiEventManager, JhiParseLinks, JhiAlertService } from 'ng-jhipster';
 
-import { IZhaopin } from 'app/shared/model/zhaopin.model';
+import { IZhaopin, Zhaopin } from 'app/shared/model/zhaopin.model';
 import { AccountService } from 'app/core';
 
 import { ITEMS_PER_PAGE } from 'app/shared';
@@ -29,6 +29,7 @@ export class ZhaopinComponent implements OnInit, OnDestroy {
   predicate: any;
   previousPage: any;
   reverse: any;
+  words: any;
 
   constructor(
     protected zhaopinService: ZhaopinService,
@@ -53,12 +54,25 @@ export class ZhaopinComponent implements OnInit, OnDestroy {
       .query({
         page: this.page - 1,
         size: this.itemsPerPage,
-        sort: this.sort()
+        sort: this.sort(),
+        words: this.words
       })
       .subscribe(
         (res: HttpResponse<IZhaopin[]>) => this.paginateZhaopins(res.body, res.headers),
         (res: HttpErrorResponse) => this.onError(res.message)
       );
+  }
+
+  refresh() {
+    this.zhaopinService
+      .refresh()
+      .pipe(
+        filter((response: HttpResponse<any>) => response.ok),
+        map((res: HttpResponse<any>) => res.body)
+      )
+      .subscribe(res => {
+        console.log('refresh result:' + JSON.stringify(res));
+      });
   }
 
   loadPage(page: number) {

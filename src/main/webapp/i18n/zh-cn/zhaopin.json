@@ -2,27 +2,27 @@
   "zpApp": {
     "zhaopin": {
       "home": {
-        "title": "Zhaopins",
-        "createLabel": "创建新 Zhaopin",
-        "createOrEditLabel": "创建或编辑 Zhaopin"
+        "title": "职位",
+        "createLabel": "创建新 职位",
+        "createOrEditLabel": "创建或编辑 职位"
       },
-      "created": "Zhaopin {{ param }} 创建成功",
-      "updated": "Zhaopin {{ param }} 更新成功",
-      "deleted": "Zhaopin {{ param }} 删除成功",
+      "created": "职位 {{ param }} 创建成功",
+      "updated": "职位 {{ param }} 更新成功",
+      "deleted": "职位 {{ param }} 删除成功",
       "delete": {
-        "question": "你确定要删除 Zhaopin {{ id }} 吗？"
+        "question": "你确定要删除 职位 {{ id }} 吗？"
       },
       "detail": {
-        "title": "Zhaopin"
+        "title": "职位"
       },
-      "zwmc": "Zwmc",
-      "gsmc": "Gsmc",
-      "gzdd": "Gzdd",
-      "xzLow": "Xz Low",
-      "xzHeight": "Xz Height",
-      "ptime": "Ptime",
+      "zwmc": "职位名称",
+      "gsmc": "公司名称",
+      "gzdd": "位置",
+      "xzLow": "最低薪资",
+      "xzHeight": "最高薪资",
+      "ptime": "发布时间",
       "href": "Href",
-      "cluster": "Cluster"
+      "cluster": "聚类ID"
     }
   }
 }

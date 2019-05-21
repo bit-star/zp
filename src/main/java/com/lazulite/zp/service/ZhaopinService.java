@@ -7,9 +7,19 @@ import org.slf4j.LoggerFactory;
 
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
+import org.springframework.data.jpa.domain.Specification;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import javax.persistence.criteria.CriteriaBuilder;
+import javax.persistence.criteria.CriteriaQuery;
+import javax.persistence.criteria.Predicate;
+import javax.persistence.criteria.Root;
+import java.io.DataInputStream;
+import java.io.IOException;
+import java.io.InputStream;
+import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 import java.util.Optional;
 
@@ -77,5 +87,42 @@ public class ZhaopinService {
 
     public List<Zhaopin> findAllByCluster(Long cluster){
        return zhaopinRepository.findAllByCluster(cluster);
+    }
+
+
+    public Page<Zhaopin> findByWords(List<String> words,Pageable pageable){
+        Page<Zhaopin> resultList = null;
+        Specification querySpecifi = (Specification<Zhaopin>) (root, criteriaQuery, criteriaBuilder) -> {
+            List<Predicate> predicates = new ArrayList<>();
+            for (String word : words) {
+                predicates.add(criteriaBuilder.or(criteriaBuilder.like(criteriaBuilder.lower(root.get("zwmc")), "%"+word.toLowerCase()+"%")));
+            }
+            return criteriaBuilder.or(predicates.toArray(new Predicate[predicates.size()]));
+        };
+        resultList =  this.zhaopinRepository.findAll(querySpecifi,pageable);
+        return resultList;
+    }
+
+    public String execPython(){
+
+        try {
+            String exe = "python";
+            String command = "/Users/chenjunfu/IdeaProjects/zp/src/main/resources/test.py";
+            String num1 = "1";
+            String num2 = "2";
+            String[] cmdArr = new String[] {exe,command, num1, num2};
+            Process process = null;
+            process = Runtime.getRuntime().exec(cmdArr);
+            InputStream is = process.getInputStream();
+            DataInputStream dis = new DataInputStream(is);
+            String str = dis.readLine();
+            process.waitFor();
+            return str;
+        } catch (IOException e) {
+            e.printStackTrace();
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+        return null;
     }
 }
