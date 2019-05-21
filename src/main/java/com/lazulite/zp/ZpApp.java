@@ -19,6 +19,8 @@ import org.springframework.boot.autoconfigure.liquibase.LiquibaseProperties;
 import org.springframework.boot.context.properties.EnableConfigurationProperties;
 import org.springframework.core.env.Environment;
 
+import java.io.File;
+import java.io.IOException;
 import java.net.InetAddress;
 import java.net.UnknownHostException;
 import java.util.Arrays;
@@ -81,21 +83,20 @@ public class ZpApp implements InitializingBean {
         }
         String hostAddress = "localhost";
         try {
-            String title ="我叫李太白，我是一个诗人，我生活在唐朝";
+
             hostAddress = InetAddress.getLocalHost().getHostAddress();
-            ObjectMapper objectMapper =new ObjectMapper();
-            //移除停用词进行分词
-            List<Word> list = WordSegmenter.seg(title);
-
-            System.out.println(objectMapper.writeValueAsString(list));
-
-            //保留停用词
-            List<Word> lists = WordSegmenter.segWithStopWords(title);
-            System.out.println(objectMapper.writeValueAsString(lists));
+            String title ="我叫李太白，我是一个诗人，我生活在唐朝";
+//            ObjectMapper objectMapper =new ObjectMapper();
+//            //移除停用词进行分词
+//            List<Word> list = WordSegmenter.seg(title);
+//
+//            System.out.println(objectMapper.writeValueAsString(list));
+//
+//            //保留停用词
+//            List<Word> lists = WordSegmenter.segWithStopWords(title);
+//            System.out.println(objectMapper.writeValueAsString(lists));
         } catch (UnknownHostException e) {
             log.warn("The host name could not be determined, using `localhost` as fallback");
-        } catch (JsonProcessingException e) {
-            e.printStackTrace();
         }
         log.info("\n----------------------------------------------------------\n\t" +
                 "Application '{}' is running! Access URLs:\n\t" +
@@ -112,5 +113,22 @@ public class ZpApp implements InitializingBean {
             contextPath,
             env.getActiveProfiles());
 
+        System.out.println(System.getProperty("java.class.path"));
+        System.out.println(System.getProperty("usr.dir"));
+
+        File directory = new File(".");
+        try {
+            System.out.println(directory.getCanonicalPath());
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        System.out.println(directory.getAbsolutePath());
+
+        System.out.println(directory.getPath());
+
+
     }
+
+
+
 }

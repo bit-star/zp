@@ -16,6 +16,7 @@ import javax.persistence.criteria.CriteriaQuery;
 import javax.persistence.criteria.Predicate;
 import javax.persistence.criteria.Root;
 import java.io.DataInputStream;
+import java.io.File;
 import java.io.IOException;
 import java.io.InputStream;
 import java.util.ArrayList;
@@ -106,8 +107,11 @@ public class ZhaopinService {
     public String execPython(){
 
         try {
+            File directory = new File(".");
+            String path = directory.getCanonicalPath();
+            String scriptFileName = "app.py";
             String exe = "python";
-            String command = "/Users/chenjunfu/IdeaProjects/zp/src/main/resources/test.py";
+            String command = path+File.separator+scriptFileName;
             String num1 = "1";
             String num2 = "2";
             String[] cmdArr = new String[] {exe,command, num1, num2};
@@ -117,6 +121,7 @@ public class ZhaopinService {
             DataInputStream dis = new DataInputStream(is);
             String str = dis.readLine();
             process.waitFor();
+            System.out.println("exec python result:"+str);
             return str;
         } catch (IOException e) {
             e.printStackTrace();
