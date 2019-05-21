@@ -29,7 +29,7 @@
             <tbody>
             <tr *ngFor="let zhaopin of zhaopins ;trackBy: trackId">
                 <td><a [routerLink]="['/zhaopin', zhaopin.id, 'view' ]">{{zhaopin.id}}</a></td>
-                <td><a href="{{zhaopin.href}}">{{zhaopin.zwmc}}</a></td>
+                <td><a href="{{zhaopin.href}}" target="_blank" >{{zhaopin.zwmc}}</a></td>
                 <td>{{zhaopin.gsmc}}</td>
                 <td>{{zhaopin.gzdd}}</td>
                 <td>{{zhaopin.xzLow}}</td>
