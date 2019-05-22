@@ -71,7 +71,7 @@ export class ZhaopinComponent implements OnInit, OnDestroy {
         map((res: HttpResponse<any>) => res.body)
       )
       .subscribe(res => {
-        console.log('refresh result:' + JSON.stringify(res));
+        this.jhiAlertService.success(JSON.stringify(res));
       });
   }
 

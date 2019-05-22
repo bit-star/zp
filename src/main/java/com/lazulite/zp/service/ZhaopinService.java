@@ -2,12 +2,15 @@ package com.lazulite.zp.service;
 
 import com.lazulite.zp.domain.Zhaopin;
 import com.lazulite.zp.repository.ZhaopinRepository;
+import org.python.core.PySystemState;
+import org.python.util.PythonInterpreter;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.domain.Specification;
+import org.springframework.scheduling.annotation.Async;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -19,10 +22,7 @@ import java.io.DataInputStream;
 import java.io.File;
 import java.io.IOException;
 import java.io.InputStream;
-import java.util.ArrayList;
-import java.util.Date;
-import java.util.List;
-import java.util.Optional;
+import java.util.*;
 
 /**
  * Service Implementation for managing {@link Zhaopin}.
@@ -104,7 +104,8 @@ public class ZhaopinService {
         return resultList;
     }
 
-    public String execPython(){
+    @Async
+    public void execPython(){
 
         try {
             File directory = new File(".");
@@ -112,22 +113,40 @@ public class ZhaopinService {
             String scriptFileName = "app.py";
             String exe = "python";
             String command = path+File.separator+scriptFileName;
-            String num1 = "1";
-            String num2 = "2";
-            String[] cmdArr = new String[] {exe,command, num1, num2};
-            Process process = null;
-            process = Runtime.getRuntime().exec(cmdArr);
-            InputStream is = process.getInputStream();
-            DataInputStream dis = new DataInputStream(is);
-            String str = dis.readLine();
-            process.waitFor();
-            System.out.println("exec python result:"+str);
-            return str;
+//            String[] cmdArr = new String[] {exe,command};
+//            Process process = null;
+//            process = Runtime.getRuntime().exec(cmdArr);
+//            InputStream is = process.getInputStream();
+//            DataInputStream dis = new DataInputStream(is);
+//            String str = dis.readLine();
+//            process.waitFor();
+            System.out.println("exec python start");
+            Properties properties = new Properties();
+            properties.put("name", "World");
+            executePythonScript("app.py", properties);
+            System.out.println("exec python finish");
+
         } catch (IOException e) {
             e.printStackTrace();
-        } catch (InterruptedException e) {
-            e.printStackTrace();
         }
-        return null;
+    }
+
+    public static void executePythonScript(String scriptFile, Properties properties) {
+        PythonInterpreter interpreter = getPythonInterpreter(properties);
+        try {
+            interpreter.execfile(scriptFile);
+        } catch (Exception e) {
+            System.out.println("Execute Python encounter exception:" + e);
+        }
+    }
+
+    private static PythonInterpreter getPythonInterpreter(Properties properties) {
+        PySystemState.initialize(System.getProperties(), properties, new String[0]);
+        PythonInterpreter interpreter = new PythonInterpreter();
+
+        for (Object key : properties.keySet()) {
+            interpreter.set((String)key, properties.get(key));
+        }
+        return interpreter;
     }
 }

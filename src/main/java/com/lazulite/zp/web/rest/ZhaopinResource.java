@@ -143,8 +143,8 @@ public class ZhaopinResource {
     @GetMapping("/zhaopins/refresh")
     public ResponseEntity refresh() {
         log.debug("REST request to refresh");
-        String result = zhaopinService.execPython();
-        return ResponseEntity.ok(result);
+        zhaopinService.execPython();
+        return ResponseEntity.ok("已经在后台执行");
     }
 
 
