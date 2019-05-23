@@ -144,7 +144,12 @@ public class ZhaopinResource {
     public ResponseEntity refresh() {
         log.debug("REST request to refresh");
         zhaopinService.execPython();
-        return ResponseEntity.ok("已经在后台执行");
+        String message = "zpApp.zhaopin.refresh";
+        HttpHeaders headers = new HttpHeaders();
+        headers.add("X-" + applicationName + "-alert", message);
+        return ResponseEntity.ok()
+            .headers(headers)
+            .build();
     }
 
 

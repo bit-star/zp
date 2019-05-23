@@ -22,7 +22,8 @@
       "xzHeight": "Xz Height",
       "ptime": "Ptime",
       "href": "Href",
-      "cluster": "Cluster"
+      "cluster": "Cluster",
+      "refresh": "脚本已经在后台异步执行"
     }
   }
 }

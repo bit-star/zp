@@ -22,7 +22,8 @@
       "xzHeight": "最高薪资",
       "ptime": "发布时间",
       "href": "Href",
-      "cluster": "聚类ID"
+      "cluster": "聚类ID",
+      "refresh": "脚本已经在后台异步执行"
     }
   }
 }
