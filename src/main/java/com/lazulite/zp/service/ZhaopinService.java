@@ -134,6 +134,11 @@ public class ZhaopinService {
     public static void executePythonScript(String scriptFile, Properties properties) {
         PythonInterpreter interpreter = getPythonInterpreter(properties);
         try {
+            File directory = new File(".");
+            String path = directory.getCanonicalPath();
+            System.out.println("path:"+path);
+            interpreter.exec("import sys");
+            interpreter.exec("sys.path.append('"+path+"')");
             interpreter.execfile(scriptFile);
         } catch (Exception e) {
             System.out.println("Execute Python encounter exception:" + e);
