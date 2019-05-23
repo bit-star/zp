@@ -110,23 +110,26 @@ public class ZhaopinService {
         try {
             File directory = new File(".");
             String path = directory.getCanonicalPath();
-            String scriptFileName = "app.py";
-            String exe = "python";
+            String scriptFileName = "start-p.bat";
+            String exe = "cmd";
             String command = path+File.separator+scriptFileName;
-//            String[] cmdArr = new String[] {exe,command};
-//            Process process = null;
-//            process = Runtime.getRuntime().exec(cmdArr);
-//            InputStream is = process.getInputStream();
-//            DataInputStream dis = new DataInputStream(is);
-//            String str = dis.readLine();
-//            process.waitFor();
-            System.out.println("exec python start");
-            Properties properties = new Properties();
-            properties.put("name", "World");
-            executePythonScript("app.py", properties);
-            System.out.println("exec python finish");
+            String[] cmdArr = new String[] {exe,command};
+            Process process = null;
+            process = Runtime.getRuntime().exec(cmdArr);
+            InputStream is = process.getInputStream();
+            DataInputStream dis = new DataInputStream(is);
+            String str = dis.readLine();
+            System.out.println(str);
+            process.waitFor();
+//            System.out.println("exec python start");
+//            Properties properties = new Properties();
+//            properties.put("name", "World");
+//            executePythonScript("app.py", properties);
+//            System.out.println("exec python finish");
 
         } catch (IOException e) {
+            e.printStackTrace();
+        } catch (InterruptedException e) {
             e.printStackTrace();
         }
     }
